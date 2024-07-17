@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <p>Trabalhando com eventos</p>
+        <p>{{contador}}</p>
+        <p>
+            <!--O evento click gera a chamada da função add-->
+            <button v-on:click="add">+1</button>
+            <!--Também é possivel executar comandos diretamente da tag-->
+            <button @click="contador -= 2">-2</button>
+        </p>
+        <hr>
+        <p>Passe o mouse por cima:</p>
+        <!--O parâmetro mousemove chama a funcao atualizar posicao-->
+        <p style="border: 1px solid blue" @mousemove="atualizarPosicao">
+            Coordenadas: {{x}}, {{y}}
+        </p>
+        <hr>
+        <!--O parâmetro @keyup inicia um evento de pressionamento de tecla-->
+        <p>
+            Selecione o input com o mouse e clique enter
+        </p>
+        <input type="text" @keyup.enter="alerta">
+        <!-- existe o @keyup.m / @keyup.a entre vários outros-->
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                contador: 0,
+                x: 0,
+                y: 0,
+            },
+            methods: {
+                add(){
+                    this.contador++
+                },
+                atualizarPosicao(e){
+                    // event.clientX -> posicao do mouse na tela
+                    this.x = e.clientX
+                    this.y = e.clientY
+                },
+                // evento teclado para uma tecla específica'
+                alerta(){
+                    alert('Enter!')
+                }
+            }
+        })
+    </script>
+</body>
+</html>

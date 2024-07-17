@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Binding</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <p>Utilize o binding para criar links referenciando um objeto Vue:</p>
+        <p><a v-bind:href="link">Cariani e Serjão discutindo qual o maior dano no minecraft</a></p>
+        <p><a :href="link">Forma reduzida de binding</a></p>
+        <p>
+            <label>Atribuindo propriedades ao form. Atualizar o form atualizará o valor da propriedade</label>
+            <!-- Utilizando o v-model, o valor da propriedade se altera-->
+            <!-- Mas é possível trabalhar com v-bind:value, isso referencia o valor mas não altera depois -->
+            <input type="text" v-model="nome"><br>
+            <span>{{nome}}</span>
+        </p>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                nome: "Maria",
+                link: "https://www.youtube.com/watch?v=mL_cQMfeH9o"
+            },
+            watch: {
+                // Respondo a alteração de um atributo
+                nome(novoValor){
+                    // Sempre que o atributo "nome" for alterada,
+                    console.log(novoValor.toUpperCase())
+                }
+            }
+        })
+    </script>
+</body>
+</html>

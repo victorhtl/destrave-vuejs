@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conceitos Básicos</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <p style="color: blue;">Operações JavaScript diretamente no HTML: </p>
+        <p>{{2+2}}</p>
+        <p>{{"teste".toUpperCase()}}</p>
+        <p style="color: blue">Passar atributos do objeto Vue</p>
+        <p>Produto: {{ nome }}, R$ {{ preco }}</p>
+        <p>Produto com desconto R$ {{ precoComDesconto }}</p>
+        <p style="color: blue;">Executar funções do objeto Vue</p>
+        <p>Hora Certa: {{ horaCerta() }}</p>
+    </div>
+    <script>
+        new Vue({
+            el: "#app", // elemento id=app
+            data: {
+                nome: 'Caneta',
+                preco: 6.89,
+                desconto: 0.15
+            },
+            methods: {
+                horaCerta(){
+                    return new Date().toLocaleString()
+                }
+            },
+            computed: {
+                precoComDesconto(){
+                    return (this.preco - (this.preco * this.desconto)).toFixed(2)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
